@@ -29,7 +29,7 @@
   <div class="container" id="signUpForm">
     <h1 class="form-title">Sign Up</h1>
     <!-- to be changed to post after backend -->
-    <form method="get" action="/homepage.html">
+    <form method="get" action="/WT&DBMSproject/homepage.html">
       <div class="input-group">
         <i class="fas fa-user"></i>
         <input type="text" name="fName" id="fName" placeholder="First Name" required />
@@ -63,7 +63,7 @@
   <div class="container hidden" id="signInForm">
     <h1 class="form-title">Sign In</h1>
     <!-- to be changed to post after backend -->
-    <form method="get" action="/homepage.html">
+    <form method="get" action="/WT&DBMSproject/homepage.html">
       <div class="input-group">
         <i class="fas fa-envelope"></i>
         <input type="email" name="email" id="email" placeholder="Email" required />

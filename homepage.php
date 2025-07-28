@@ -17,8 +17,8 @@
   <div class="navbar">
     <h1>Arena Futsal</h1>
     <div class="nav-buttons">
-      <a href="/bookings.html">Booking</a>
-      <a href="/SignUP.html">Login</a>
+      <a href="/WT&DBMSproject/bookings.php">Booking</a>
+      <a href="/WT&DBMSproject/SignUP.php">Login</a>
     </div>
   </div>
 

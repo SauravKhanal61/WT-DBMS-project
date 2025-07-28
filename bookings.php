@@ -65,7 +65,7 @@
 <body>
   <div class="container">
     <h1>Book a Futsal Session</h1>
-    <form action="/submit-booking.html" method="get">
+    <form action="/WT&DBMSproject/submit-booking.php" method="get">
 
 
       <label for="date">Select Date</label>
@@ -81,7 +81,6 @@
         <option value="19:00-20:00">19:00 - 20:00</option>
         <option value="20:00-21:00">20:00 - 21:00</option>
       </select>
-
       <button type="submit">Book Now</button>
     </form>
   </div>

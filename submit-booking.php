@@ -10,7 +10,7 @@
     <h1>Booking Confirmed!</h1>
     <p>Thank you for booking a futsal session with us.</p>
     <p>We look forward to seeing you on the pitch!</p>
-    <a href="homepage.html">Back to Home</a>
+    <a href="/WT&DBMSproject/homepage.php">Back to Home</a>
   </div>
 </body>
 </html>
