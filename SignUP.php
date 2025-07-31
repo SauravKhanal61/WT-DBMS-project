@@ -142,6 +142,12 @@
     $result = mysqli_query($conn, $sql);
     $num = mysqli_num_rows($result);
     if ($num == 1) {
+      $sql = "SELECT user_id FROM user WHERE email='$Email'";
+      $result = mysqli_query($conn, $sql);
+      $row = mysqli_fetch_assoc($result);
+      $user_id = $row['user_id'];
+      session_start();
+      $_SESSION['user_id'] = $user_id;
       echo "<script>alert('Login Successful');window.location.href='http://localhost/WT&DBMSproject/homepage.php';</script>";
     } else {
       echo "<script>alert('Invalid Email or Password');</script>";

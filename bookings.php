@@ -44,7 +44,7 @@
       font-size: 16px;
     }
 
-    button {
+    input,button {
       width: 100%;
       margin-top: 25px;
       padding: 12px;
@@ -56,8 +56,8 @@
       cursor: pointer;
     }
 
-    button:hover {
-      background-color: #219150;
+    input:hover {
+      background-color: #1e7d46ff;
     }
   </style>
 </head>
@@ -65,7 +65,7 @@
 <body>
   <div class="container">
     <h1>Book a Futsal Session</h1>
-    <form action="/WT&DBMSproject/submit-booking.php" method="get">
+    <form method="post">
 
 
       <label for="date">Select Date</label>
@@ -81,9 +81,46 @@
         <option value="19:00-20:00">19:00 - 20:00</option>
         <option value="20:00-21:00">20:00 - 21:00</option>
       </select>
-      <button type="submit">Book Now</button>
+      <input type="submit" name="Submit" value="Book">
     </form>
-  </div>
+    </div>
+    <?php
+    include 'dbconnect.php';
+    session_start();
+    if (!isset($_SESSION['user_id'])) {
+      echo "<script>alert('Please log in to book a session.');window.location.href='http://localhost/WT&DBMSproject/SignUP.php';</script>";
+      exit();
+    }
+    $user_id = $_SESSION['user_id'];
+    // Handle form submission
+    if (isset($_POST['Submit'])) {
+      $date = $_POST['date'];
+      $time = $_POST['time'];
+      $sql = "Select * from slots where slot_date='$date' and slot_time='$time'";
+      $result = mysqli_query($conn, $sql);
+      if (mysqli_num_rows($result) > 0) {
+        echo "<script>alert('This time slot is already booked. Please choose another time.');</script>";
+      } else {
+        // Insert booking into booking table
+        $sql = "INSERT INTO booking (user_id) VALUES ('$user_id')";
+        if (!mysqli_query($conn, $sql)) {
+          echo "<script>alert('Error in booking. Please try again.');</script>";
+          exit();
+        }
+        // Insert booking into slots table
+        $sql_booking = "Select booking_id from booking where user_id='$user_id' order by booking_id desc limit 1";
+        $result_booking = mysqli_query($conn, $sql_booking);
+        $row_booking = mysqli_fetch_assoc($result_booking);
+        $booking_id = $row_booking['booking_id'];
+        $insert_sql = "INSERT INTO slots (slot_date,slot_time,booking_id,availability) VALUES ('$date', '$time','$booking_id','booked')";
+        if (mysqli_query($conn, $insert_sql)) {
+          echo "<script>alert('Payment for booking');window.location.href='http://localhost/WT&DBMSproject/payment.php';</script>";
+        } else {
+          echo "<script>alert('Error in booking. Please try again.');</script>";
+        }
+      }
+    }
+    ?>
 </body>
 
 </html>
